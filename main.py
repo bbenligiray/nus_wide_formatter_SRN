@@ -67,6 +67,11 @@ def main():
       image = Image.open(image_name)
       np_image = np.array(image)
 
+      # for this one CMYK image
+      if np_image.shape[2] != 3:
+        image = image.convert('RGB')
+        np_image = np.array(image)
+
       if args.resize == '224x224':
         np_image = imresize(np_image, (224, 224))
 
